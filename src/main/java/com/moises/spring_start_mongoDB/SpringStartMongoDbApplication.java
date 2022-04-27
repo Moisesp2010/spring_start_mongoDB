@@ -9,7 +9,7 @@ public class SpringStartMongoDbApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringStartMongoDbApplication.class, args);
 		
-		
+	
 	}
 
 }
