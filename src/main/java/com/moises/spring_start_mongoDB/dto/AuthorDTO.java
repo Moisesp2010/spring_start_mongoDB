@@ -2,7 +2,7 @@ package com.moises.spring_start_mongoDB.dto;
 
 import java.io.Serializable;
 
-import com.moises.spring_start_mongoDB.domain.AuthorDTO;
+import com.moises.spring_start_mongoDB.domain.User;
 
 public class AuthorDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -13,7 +13,7 @@ public class AuthorDTO implements Serializable {
 	public AuthorDTO() {
 	}
 
-	public AuthorDTO(AuthorDTO obj) {
+	public AuthorDTO(User obj) {
 		id = obj.getId();
 		name = obj.getName();
 	}
