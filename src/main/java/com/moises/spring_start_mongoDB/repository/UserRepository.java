@@ -11,6 +11,7 @@ import com.moises.spring_start_mongoDB.domain.User;
 @Repository
 public interface UserRepository extends MongoRepository<AuthorDTO, String> {
 
-	void saveAll(List<User> asList);
+	void saveAll(Object user);
+
 
 }
