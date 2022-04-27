@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.moises.spring_start_mongoDB.domain.User;
+import com.moises.spring_start_mongoDB.domain.AuthorDTO;
 import com.moises.spring_start_mongoDB.dto.UserDTO;
 import com.moises.spring_start_mongoDB.repository.UserRepository;
 import com.moises.spring_start_mongoDB.services.exception.ObjectNotFoundException;
@@ -17,16 +17,16 @@ public class UserService {
 	@Autowired
 	private UserRepository repo;
 
-	public List<User> findAll() {
+	public List<AuthorDTO> findAll() {
 		return repo.findAll();
 	}
 
-	public User findById(String id) {
-		Optional<User> obj = repo.findById(id);
+	public AuthorDTO findById(String id) {
+		Optional<AuthorDTO> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 	
-	public User insert(User obj) {
+	public AuthorDTO insert(AuthorDTO obj) {
 		return repo.insert(obj);
 	}
 	
@@ -35,18 +35,18 @@ public class UserService {
 		repo.deleteById(id);
 	}
 	
-	public User update(User obj) {
-		User newObj = findById(obj.getId());
+	public AuthorDTO update(AuthorDTO obj) {
+		AuthorDTO newObj = findById(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
 
-	private void updateData(User newObj, User obj) {
+	private void updateData(AuthorDTO newObj, AuthorDTO obj) {
 		newObj.setName(obj.getName());
 		newObj.setEmail(obj.getEmail());
 	}
 
-	public User fromDTO(UserDTO objDto) {
-		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
+	public AuthorDTO fromDTO(UserDTO objDto) {
+		return new AuthorDTO(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
 }

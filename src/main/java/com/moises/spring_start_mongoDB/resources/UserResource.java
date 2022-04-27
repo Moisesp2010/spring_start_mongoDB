@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.moises.spring_start_mongoDB.domain.User;
+import com.moises.spring_start_mongoDB.domain.AuthorDTO;
 import com.moises.spring_start_mongoDB.dto.UserDTO;
 import com.moises.spring_start_mongoDB.services.UserService;
 
@@ -28,21 +28,21 @@ public class UserResource {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UserDTO>> findAll() {
 
-		List<User> list = service.findAll();
+		List<AuthorDTO> list = service.findAll();
 		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
-		User obj = service.findById(id);
+		AuthorDTO obj = service.findById(id);
 		return ResponseEntity.ok().body(new UserDTO(obj));
 
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody UserDTO objDto) {
-		User obj = service.fromDTO(objDto);
+		AuthorDTO obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -56,7 +56,7 @@ public class UserResource {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
  	public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id) {
-		User obj = service.fromDTO(objDto);
+		AuthorDTO obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();

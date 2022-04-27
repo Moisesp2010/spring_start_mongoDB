@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user")
-public class User implements Serializable {
+public class AuthorDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -14,10 +14,10 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 
-	public User() {
+	public AuthorDTO() {
 	}
 
-	public User(String id, String name, String email) {
+	public AuthorDTO(String id, String name, String email) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -64,7 +64,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		AuthorDTO other = (AuthorDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
