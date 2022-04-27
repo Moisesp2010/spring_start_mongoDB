@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moises.spring_start_mongoDB.domain.AuthorDTO;
+import com.moises.spring_start_mongoDB.domain.User;
 import com.moises.spring_start_mongoDB.dto.UserDTO;
 import com.moises.spring_start_mongoDB.repository.UserRepository;
 import com.moises.spring_start_mongoDB.services.exception.ObjectNotFoundException;
